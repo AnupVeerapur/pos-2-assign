@@ -2,11 +2,12 @@ const expconstress = require('express');
 const compression = require('compression');
 const path = require('path');
 
-const app = express();
+const app = expconstress();
+// const app = express();
 
 app.use(compression());
 
-app.use('/static', express.static("./build/static/"));
+// app.use('/static', express.static("./build/static/"));
 
 app.get('/', (req, res) => {
     res.sendFile('index.html', { root: './build/' });
