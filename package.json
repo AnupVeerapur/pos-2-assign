@@ -17,7 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.0.4",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
     "next": "^9.3.2",
+    "path": "^0.12.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
