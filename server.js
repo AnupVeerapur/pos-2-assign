@@ -1,21 +1,29 @@
-const expconstress = require('express');
-const compression = require('compression');
-const path = require('path');
+const express = require('express');
+const next = require('next');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-const app = expconstress();
-// const app = express();
+let dev = false;
 
-app.use(compression());
+const app = next({ dev, dir: process.cwd() });
+const handle = app.getRequestHandler();
+const port = process.env.PORT || 3005;
 
-// app.use('/static', express.static("./build/static/"));
+app.prepare().then(() => {
+    const server = express();
+    server.use(cookieParser());
+    server.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    server.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: './build/' });
-});
 
-const PORT = process.env.PORT || 3005;
+    server.get('*', (req, res) => {
+        return handle(req, res);
+    });
 
-app.listen(PORT, '0.0.0.0', (err) => {
-    if (err) { console.log(err); }
-    console.info(`==> 🌎 app listening on http://localhost:${PORT}.`);
+    server.listen(port, "127.0.0.1", err => {
+        if (err) throw err;
+        console.log(`> Ready on http://127.0.0.1:${port}`);
+    });
 });
