@@ -1,7 +1,7 @@
 {
-  "name": "Tila",
+  "name": "POS2",
   "version": "1.0.0",
-  "description": "Tila Compare App",
+  "description": "POS2 App",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
